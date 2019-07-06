@@ -10,6 +10,15 @@ This framework is for the developer who wants to simply and efficiently draw ima
 * [GLEW](http://glew.sourceforge.net "GLEW")
 
 ## instructions to get something drawn: ##
+
+* create a shader object, giving paths of vertex and fragment shaders as parameters respectively (you can use the ones included for basic uses)
+```c++
+shader yourshader("basic_fs.shader", "basic_vs.shader");
+```
+* bind the shader
+```c++
+yourshader.bind();
+```
 * create a texture object
 ```c++
 texture yourcooltexture(const char* filepath);
@@ -18,7 +27,7 @@ texture yourcooltexture(const char* filepath);
 ```c++
 thing yourthing(float width, float height);
 ```
-call _instance()_ specifying count and array of position vectors to enable rendering with instancing. you do not need to do this if you are goint to draw your things one at a time
+if you are to draw a high number of your things at a time, call _instance()_ specifying count and array of position vectors of all of your object instances to enable rendering with instancing
 ```c++
 yourthing.instance(unsigned int count, glm::vec2 positions[]);
 ```
@@ -33,3 +42,4 @@ basic.setUmat4f("mvp", proj * view * model * scale);
 yourcooltexture.bind();
 yourthing.display();
 ```
+you do not need to use a model matrix if you enabled instancing for your thing
