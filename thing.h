@@ -13,7 +13,6 @@ class thing{
 		unsigned int indices[6] = {0, 1, 3,	1, 2, 3};
 
 	public:
-		float offsetY;
 		thing(float w, float h);
 		void instance(unsigned int count_, glm::vec2 d[] = 0);
 		void display();
