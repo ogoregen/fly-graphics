@@ -43,3 +43,6 @@ yourcooltexture.bind();
 yourthing.display();
 ```
 you do not need to use a model matrix if you enabled instancing for your thing
+
+## ##
+feel free to let me know about any thought
