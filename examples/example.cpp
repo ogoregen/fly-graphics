@@ -32,9 +32,11 @@ void init(){
 }
 
 int main(void){
-
+	
+  init();
+	
   shader basic("resources/shaders/basic_vs.shader", "resources/shaders/basic_fs.shader");
-	basic.bind();
+  basic.bind();
 
   glm::mat4 proj = glm::ortho(0.0f, (float)width, (float)height, 0.0f);
 
