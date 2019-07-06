@@ -1,4 +1,4 @@
-# simple opengl implementation
+# simple openGL implementation
 
 This framework is for the developer who wants to simply and efficiently draw images on the screen using modern openGL features such as instancing.
 
