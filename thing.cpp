@@ -4,7 +4,6 @@
 thing::thing(float w, float h){
 
 	count = 1;
-	offsetY = 0;
 
 	vertices[0] = 0;
 	vertices[1] = h;
