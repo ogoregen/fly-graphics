@@ -33,7 +33,7 @@ yourthing.instance(unsigned int count, glm::vec2 positions[]);
 ```
 * to display:
   * create a model matrix with your position data
-  * pass the matrix to the shader width the name "mvp" multiplying by projection matricex
+  * pass the matrix to the shader width the name "mvp" multiplying by your projection matrix
   * bind your texture
   * call your thing's display method
 ```c++
