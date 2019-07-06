@@ -1,6 +1,6 @@
 # simple openGL implementation
 
-This framework is for the developer who wants to simply and efficiently draw images on the screen using modern openGL features such as instancing.
+This framework is for the developer who wants to simply and efficiently draw images on the screen using modern openGL features such as instancing without having to deal with or even see raw openGL code.
 
 ## dependencies: ##
 * [stb_image](https://github.com/nothings/stb/blob/master/stb_image.h "stb_image")
