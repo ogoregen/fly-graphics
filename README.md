@@ -33,12 +33,12 @@ yourthing.instance(unsigned int count, glm::vec2 positions[]);
 ```
 * to display:
   * create a model matrix with your position data
-  * pass the matrix to the shader multiplying by projection, scale and view matrices
+  * pass the matrix to the shader width the name "mvp" multiplying by projection matricex
   * bind your texture
   * call your thing's display method
 ```c++
 glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(translation.x, translation.y, 0));
-basic.setUmat4f("mvp", proj * view * model * scale);
+basic.setUmat4f("mvp", proj * model);
 yourcooltexture.bind();
 yourthing.display();
 ```
