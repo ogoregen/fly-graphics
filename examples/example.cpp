@@ -44,13 +44,13 @@ int main(void){
   while(!glfwWindowShouldClose(window)){
 
     glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(300, 300, 0));
-		basic.setUmat4f("mvp", proj * model);
-		yourtexture.bind();
-		tourthing.display();
+    basic.setUmat4f("mvp", proj * model);
+    yourtexture.bind();
+    yourthing.display();
 
     glfwSwapBuffers(window);
-		glfwPollEvents();
+    glfwPollEvents();
   }
   glfwTerminate();
-	return 0;
+  return 0;
 }
