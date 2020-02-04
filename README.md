@@ -1,5 +1,5 @@
-# dependencies
 
+## Dependencies
 * GLAD
 * GLFW
 * glm
