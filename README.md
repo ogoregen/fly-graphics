@@ -1,3 +1,5 @@
+A C++ graphics library inspired by [Processing](https://processing.org). Very much in development. 
+
 ## dependencies
 * [GLAD](https://glad.dav1d.de) (configured for OpenGL 3.3 Core)
 * [GLFW](https://www.glfw.org)
