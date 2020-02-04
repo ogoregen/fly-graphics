@@ -13,7 +13,7 @@ uniform mat4 model;
 
 void main(){
 
-	gl_Position = projection * view * model * vec4(position + instancePosition, 1.0);
-	textureC = textureCoordinates;
+  gl_Position = projection * view * model * vec4(position + instancePosition, 1.0);
+  textureC = textureCoordinates;
 }
 
