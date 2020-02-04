@@ -14,4 +14,3 @@ void main(){
 	if(usingTexture) FragColor = texture(textureSampler, textureC);
 	else FragColor = vec4(fillColor);
 }
-
