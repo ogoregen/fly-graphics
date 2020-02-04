@@ -3,7 +3,7 @@
 
 int main(){
 
-  fly::createWindow("fly demo", 800, 600);
+  fly::createWindow("parallelogram", 800, 600);
   fly::initialize(fly::projectionMethod::ORTHO);
 
   float vertices[] = {
