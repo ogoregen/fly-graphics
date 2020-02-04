@@ -1,6 +1,5 @@
-
-## Dependencies
-* GLAD
-* GLFW
-* glm
-* stb_image
+## dependencies
+* [GLAD](https://glad.dav1d.de) (configured for OpenGL 3.3 Core)
+* [GLFW](https://www.glfw.org)
+* [GLM](https://github.com/g-truc/glm)
+* [stb_image](https://github.com/nothings/stb/blob/master/stb_image.h)
