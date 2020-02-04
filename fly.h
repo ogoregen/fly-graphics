@@ -126,7 +126,7 @@ class Shader{
 
     void setUniform(const std::string &name, const glm::mat2 &value) const{
 
-  	  glUniformMatrix2fv(glGetUniformLocation(ID, name.c_str()), 1, GL_FALSE, &value[0][0]);
+      glUniformMatrix2fv(glGetUniformLocation(ID, name.c_str()), 1, GL_FALSE, &value[0][0]);
     }
 
     void setUniform(const std::string &name, const glm::mat3 &value) const{
@@ -192,10 +192,14 @@ class Thing{
 
   public:
 
-		void initialize(float vertices[], unsigned int vertexCount, unsigned int indices[], unsigned int indexCount){
+		void initialize(float vertices[], unsigned int vertexCount, unsigned int indices[], unsigned int indexCount, bool noTextureCoordinates = false){
 
       count = 1;
       elementCount = indexCount;
+      unsigned int componentCount;
+
+      if(noTextureCoordinates) componentCount = 3;
+      else componentCount = 5;
 
       unsigned int vbo, ebo;
       glGenVertexArrays(1, &vao);
@@ -208,10 +212,14 @@ class Thing{
       glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
       glBufferData(GL_ELEMENT_ARRAY_BUFFER, indexCount * sizeof(unsigned int), &indices[0], GL_STATIC_DRAW);
 
-      glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+      glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, componentCount * sizeof(float), (void*)0);
       glEnableVertexAttribArray(0);
-      glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
-      glEnableVertexAttribArray(1);
+
+      if(!noTextureCoordinates){
+
+        glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, componentCount * sizeof(float), (void*)(3 * sizeof(float)));
+        glEnableVertexAttribArray(1);
+      }
 
       glBindBuffer(GL_ARRAY_BUFFER, 0);
       glBindVertexArray(0);
@@ -355,7 +363,7 @@ void createWindow(const char *title, int width_ = 0, int height_ = 0){ //fullscr
   if(!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) std::cout << "Failed to initialize GLAD." << std::endl;
 }
 
-void initialize(projectionMethod method_, float fov = 45, float near_ = 0.1, float far_ = 100){
+void initialize(projectionMethod method_, float near_ = 0.1, float far_ = 10000, float fov = 45){
 
   method = method_;
   fieldOfView = fov;
@@ -370,7 +378,7 @@ void initialize(projectionMethod method_, float fov = 45, float near_ = 0.1, flo
   basicShader.load("shaders/vertex.shader", "shaders/fragment.shader");
   basicShader.bind();
 
-  if(method == projectionMethod::ORTHO) projection = glm::ortho(0.0f, (float)width, (float)height, 0.0f);
+  if(method == projectionMethod::ORTHO) projection = glm::ortho(0.0f, (float)width, (float)height, 0.0f, near, far);
   else if(method == projectionMethod::PERSPECTIVE) projection = glm::perspective(glm::radians(fieldOfView), (float)width/(float)height, near, far);
   basicShader.setUniform("projection", projection);
 
