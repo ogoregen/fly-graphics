@@ -1,8 +1,11 @@
 A C++ graphics library inspired by [Processing](https://processing.org). Very much in development. 
 
 ## features
-- [x] handles projection work
-- [ ] text rende
+- [x] orthographic and perspective projection
+- [x] 2D textures
+- [x] instancing
+- [ ] text rendering
+- [ ] complete matrix handling
 
 ## dependencies
 * [GLAD](https://glad.dav1d.de) (configured for OpenGL 3.3 Core)
