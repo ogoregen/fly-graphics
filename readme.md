@@ -6,6 +6,7 @@ A C++ graphics library inspired by [Processing](https://processing.org). In deve
 - [x] 2D textures
 - [x] instancing
 - [ ] text rendering
+- [ ] light
 
 ## dependencies
 * [GLAD](https://glad.dav1d.de) (configured for OpenGL 3.3 Core)
