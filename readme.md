@@ -8,6 +8,10 @@ A C++ graphics library inspired by [Processing](https://processing.org). In deve
 - [ ] text rendering
 - [ ] light
 
+## usage
+
+To be added. Check [examples](https://github.com/flightcoded/fly-graphics/tree/master/examples) also.
+
 ## dependencies
 * [GLAD](https://glad.dav1d.de) (configured for OpenGL 3.3 Core)
 * [GLFW](https://www.glfw.org)
