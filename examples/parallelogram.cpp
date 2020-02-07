@@ -1,5 +1,5 @@
 
-#include "fly.h"
+#include "fly/fly.h"
 
 int main(){
 
@@ -7,23 +7,23 @@ int main(){
   fly::initialize(fly::projectionMethod::ORTHO);
 
   float vertices[] = {
-    //x,   y, z, s, t
-   -100, -50, 0, 0, 1,
-      0,  50, 0, 0, 0,
-    100,  50, 0, 1, 0,
-      0, -50, 0, 1, 1
+    //x,   y, z
+   -100, -50, 0,
+      0,  50, 0,
+    100,  50, 0,
+      0, -50, 0
   };
 
-  unsigned int indices[] = {
+  unsigned int indices[] = { //vertex draw order, as two triangles
 
     0, 1, 3,
     3, 1, 2
   };
 
   fly::Thing parallelogram;
-  parallelogram.initialize(vertices, sizeof(vertices), indices, sizeof(indices));
+  parallelogram.initialize(vertices, sizeof(vertices), indices, sizeof(indices), true);
 
-  fly::fill(1, 0.5, 0.5);
+  fly::fill(82, 9, 91); //rgb
 
   for(; fly::running(); fly::update()){
 
