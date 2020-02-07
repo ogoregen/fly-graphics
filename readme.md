@@ -2,10 +2,10 @@ A C++ graphics library inspired by [Processing](https://processing.org). Very mu
 
 ## features - development status
 - [x] orthographic and perspective projection
+- [x] complete matrix handling
 - [x] 2D textures
 - [x] instancing
 - [ ] text rendering
-- [ ] complete matrix handling
 
 ## dependencies
 * [GLAD](https://glad.dav1d.de) (configured for OpenGL 3.3 Core)
