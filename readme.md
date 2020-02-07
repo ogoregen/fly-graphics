@@ -1,4 +1,4 @@
-A C++ graphics library inspired by [Processing](https://processing.org). Very much in development. 
+A C++ graphics library inspired by [Processing](https://processing.org). In development. 
 
 ## features - development status
 - [x] orthographic and perspective projection
