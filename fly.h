@@ -1,6 +1,7 @@
 
 #pragma once
 
+#include <vector>
 #include <string>
 #include <fstream>
 #include <sstream>
@@ -11,6 +12,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include "fly-utility.h"
 
 namespace fly{
 
@@ -20,7 +22,7 @@ class Shader{
 
     unsigned int ID;
 
-    std::string loadFile(const char* path){
+    std::string loadFile(const char *path){
 
       std::string output;
       std::ifstream reader;
@@ -43,7 +45,7 @@ class Shader{
 
   public:
 
-    void load(const char* vsPath, const char* fsPath){
+    void load(const char *vsPath, const char *fsPath){
 
       unsigned int vertex, fragment;
       int success;
@@ -151,7 +153,7 @@ class Texture{
 
   public:
 
-    void load(const char* path){
+    void load(const char *path){
 
       glGenTextures(1, &ID);
       glBindTexture(GL_TEXTURE_2D, ID);
@@ -277,39 +279,93 @@ projectionMethod method;
 GLFWwindow *window;
 Shader basicShader;
 glm::mat4 projection, view, model;
+std::vector<glm::mat4> matrixStack;
 float near, far, fieldOfView;
 double mouseX, mouseY;
 int width, height;
 
 //graphics below
 
-void background(float r, float g = 0, float b = 0, float a = 1){
+void background(float r, float g = -1, float b = -1, float a = 255){
+
+  r = map(r, 0, 256, 0, 1);
+
+  if(g == -1){
+
+    g = r;
+    b = r;
+    a = 1;
+  }
+  else{
+
+    g = map(g, 0, 256, 0, 1);
+    b = map(b, 0, 256, 0, 1);
+    a = map(a, 0, 256, 0, 1);
+  }
 
   glClearColor(r, g, b, a);
 }
 
-void fill(float r = -1, float g = -1, float b = -1, float a = 1){ //calling with no parameters to enables textures 
+void fill(float r, float g = -1, float b = -1, float a = 255){
 
-  if(r != -1){
+  r = map(r, 0, 256, 0, 1);
 
-    basicShader.setUniform("usingTexture", false);
-    basicShader.setUniform("fillColor", glm::vec4(r, g, b, a));
+  if(g == -1){
+
+    g = r;
+    b = r;
+    a = 1;
   }
-  else basicShader.setUniform("usingTexture", true);
+  else{
+
+    g = map(g, 0, 256, 0, 1);
+    b = map(b, 0, 256, 0, 1);
+    a = map(a, 0, 256, 0, 1);
+  }
+
+  basicShader.setUniform("fillColor", glm::vec4(r, g, b, a));
+}
+
+void useTexture(bool toggle){
+
+  basicShader.setUniform("usingTexture", toggle);
+}
+
+void pushMatrix(){
+
+  matrixStack.push_back(model);
+  basicShader.setUniform("model", model);
+}
+
+void popMatrix(){
+
+  matrixStack.pop_back();
+  model = matrixStack.back();
+  basicShader.setUniform("model", model);
 }
 
 void translate(float x, float y, float z = 0){
 
-  model = glm::translate(glm::mat4(1.0f), glm::vec3(x, y, z));
+  model = glm::translate(matrixStack.back(), glm::vec3(x, y, z));
+  basicShader.setUniform("model", model);
+  matrixStack.back() = model;
+}
+
+void resetModel(){
+
+  model = glm::mat4(1);
+  matrixStack.clear();
+  matrixStack.push_back(model);
   basicShader.setUniform("model", model);
 }
 
 void rotate(float x, float y, float z = 0){
 
-  model = glm::rotate(model, glm::radians(x), glm::vec3(1, 0, 0));
-  model = glm::rotate(model, glm::radians(y), glm::vec3(0, 1, 0));
-  model = glm::rotate(model, glm::radians(z), glm::vec3(0, 0, 1));
+  if(x != 0) model = glm::rotate(model, glm::radians(x), glm::vec3(1, 0, 0));
+  if(y != 0) model = glm::rotate(model, glm::radians(y), glm::vec3(0, 1, 0));
+  if(z != 0) model = glm::rotate(model, glm::radians(z), glm::vec3(0, 0, 1));
   basicShader.setUniform("model", model);
+  matrixStack.back() = model;
 }
 
 void camera(float x, float y, float z, float centerX, float centerY, float centerZ){
@@ -318,7 +374,7 @@ void camera(float x, float y, float z, float centerX, float centerY, float cente
   basicShader.setUniform("view", glm::mat4(1));
 }
 
-//base below
+//callbacks below
 
 void onResize(GLFWwindow *window, int width_, int height_){
 
@@ -329,6 +385,14 @@ void onResize(GLFWwindow *window, int width_, int height_){
   else if(method == projectionMethod::PERSPECTIVE) projection = glm::perspective(glm::radians(fieldOfView), (float)width / (float)height, near, far);
   basicShader.setUniform("projection", projection);
 }
+
+void cursorCallback(GLFWwindow *window, double x, double y){
+
+  mouseX = x;
+  mouseY = y;
+}
+
+//base below
 
 void createWindow(const char *title, int width_ = 0, int height_ = 0){ //fullscreen if width and height are unspecified or 0
 
@@ -363,14 +427,10 @@ void createWindow(const char *title, int width_ = 0, int height_ = 0){ //fullscr
   if(!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) std::cout << "Failed to initialize GLAD." << std::endl;
 }
 
-void initialize(projectionMethod method_, float near_ = -100000, float far_ = 100000, float fov = 45){
-
-  method = method_;
-  fieldOfView = fov;
-  near = near_;
-  far = far_;
+void setup(){
 
   glfwSetFramebufferSizeCallback(window, onResize);
+  glfwSetCursorPosCallback(window, cursorCallback);
 
   glEnable(GL_BLEND);
   glEnable(GL_DEPTH_TEST);
@@ -378,12 +438,23 @@ void initialize(projectionMethod method_, float near_ = -100000, float far_ = 10
   basicShader.load("shaders/vertex.shader", "shaders/fragment.shader");
   basicShader.bind();
 
+  background(0);
+  resetModel();
+  camera(0, 0, 0, 0, 0, 0);
+}
+
+void initialize(projectionMethod method_, float near_ = -100000, float far_ = 100000, float fov = 45){
+
+  setup();
+
+  method = method_;
+  fieldOfView = fov;
+  near = near_;
+  far = far_;
+
   if(method == projectionMethod::ORTHO) projection = glm::ortho(0.0f, (float)width, (float)height, 0.0f, near, far);
   else if(method == projectionMethod::PERSPECTIVE) projection = glm::perspective(glm::radians(fieldOfView), (float)width/(float)height, near, far);
   basicShader.setUniform("projection", projection);
-
-  background(0);
-  camera(0, 0, 0, 0, 0, 0);
 }
 
 bool running(){
@@ -393,25 +464,15 @@ bool running(){
 
 void update(){
 
-  glfwGetCursorPos(window, &mouseX, &mouseY);
   glfwSwapBuffers(window);
   glfwPollEvents();
-  translate(0, 0, 0);
+  resetModel();
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
 void terminate(){
 
   glfwTerminate();
-}
-
-//general utility below
-
-double map(double x, double r1, double r2, double a1, double a2){
-
-  double p = (r2 - r1) / (x - r1);
-  double y = ((a2 - a1) / p) + a1;
-  return y;
 }
 
 }
