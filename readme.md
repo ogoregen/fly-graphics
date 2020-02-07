@@ -13,4 +13,4 @@ A C++ graphics library inspired by [Processing](https://processing.org). In deve
 * [GLM](https://github.com/g-truc/glm)
 * [stb_image](https://github.com/nothings/stb/blob/master/stb_image.h)
 
-There is a complete .sln file with all dependencies linked and included under [releases](https://github.com/flightcoded/fly-graphics/releases).
+There is a complete Visual Studio project with all dependencies linked and included under [releases](https://github.com/flightcoded/fly-graphics/releases).
