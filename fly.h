@@ -284,7 +284,7 @@ float near, far, fieldOfView;
 double mouseX, mouseY;
 int width, height;
 
-//graphics below
+//color below
 
 void background(float r, float g = -1, float b = -1, float a = 255){
 
@@ -330,6 +330,8 @@ void useTexture(bool toggle){
 
   basicShader.setUniform("usingTexture", toggle);
 }
+
+//transformations below
 
 void pushMatrix(){
 
@@ -443,7 +445,7 @@ void setup(){
   camera(0, 0, 0, 0, 0, 0);
 }
 
-void initialize(projectionMethod method_, float near_ = -100000, float far_ = 100000, float fov = 45){
+void initialize(projectionMethod method_, float near_ = -1000, float far_ = 1000, float fov = 45){
 
   setup();
 
