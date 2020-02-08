@@ -7,6 +7,7 @@ A C++ graphics library inspired by [Processing](https://processing.org). In deve
 - [x] instancing
 - [ ] text rendering
 - [ ] light
+- [ ] face culling
 
 ## usage
 
