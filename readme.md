@@ -2,6 +2,7 @@ A C++ graphics library inspired by [Processing](https://processing.org). In deve
 
 ## features - development status
 - [x] orthographic and perspective projection
+- [x] window handling
 - [x] complete matrix handling
 - [x] 2D textures
 - [x] instancing
