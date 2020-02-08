@@ -383,7 +383,7 @@ void onResize(GLFWwindow *window, int width_, int height_){
   width = width_;
   height = height_;
   glViewport(0, 0, width, height);
-  if(method == projectionMethod::ORTHO) projection = glm::ortho(0.0f, (float)width, (float)height, 0.0f);
+  if(method == projectionMethod::ORTHO) projection = glm::ortho(0.0f, (float)width, (float)height, 0.0f, near, far);
   else if(method == projectionMethod::PERSPECTIVE) projection = glm::perspective(glm::radians(fieldOfView), (float)width / (float)height, near, far);
   basicShader.setUniform("projection", projection);
 }
@@ -467,9 +467,12 @@ void fullscreen(bool toggle){
     glfwGetMonitorWorkarea(glfwGetPrimaryMonitor(), &xPosition, &yPosition, &monitorWidth, &monitorHeight);
     glfwSetWindowMonitor(window, NULL, xPosition, yPosition, monitorWidth, monitorHeight, 1);
   }
-  else glfwSetWindowMonitor(window, NULL, 200, 200, 800, 600, 1);
-}    
-    
+  else{
+
+    glfwSetWindowMonitor(window, NULL, 200, 200, 800, 600, 1);
+  }
+}
+
 bool running(){
 
   return !glfwWindowShouldClose(window);
