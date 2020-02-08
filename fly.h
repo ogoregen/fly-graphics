@@ -459,6 +459,17 @@ void initialize(projectionMethod method_, float near_ = -1000, float far_ = 1000
   basicShader.setUniform("projection", projection);
 }
 
+void fullscreen(bool toggle){
+
+  if(toggle){
+
+    int xPosition, yPosition, monitorWidth, monitorHeight;
+    glfwGetMonitorWorkarea(glfwGetPrimaryMonitor(), &xPosition, &yPosition, &monitorWidth, &monitorHeight);
+    glfwSetWindowMonitor(window, NULL, xPosition, yPosition, monitorWidth, monitorHeight, 1);
+  }
+  else glfwSetWindowMonitor(window, NULL, 200, 200, 800, 600, 1);
+}    
+    
 bool running(){
 
   return !glfwWindowShouldClose(window);
