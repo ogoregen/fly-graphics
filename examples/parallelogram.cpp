@@ -24,11 +24,15 @@ int main(){
   parallelogram.initialize(vertices, sizeof(vertices), indices, sizeof(indices), true);
 
   fly::fill(82, 9, 91); //rgb
-
+  
+  float angle = 0;
+  
   for(; fly::running(); fly::update()){
 
     fly::translate(fly::width/2, fly::height/2);
+    fly::rotate(0, 0, angle);
     parallelogram.display();
+    angle++;
   }
 
   fly::terminate();
