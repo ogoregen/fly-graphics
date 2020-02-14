@@ -12,7 +12,25 @@ A C++ graphics library inspired by [Processing](https://processing.org). In deve
 
 ## usage
 
-To be added. Check [examples](https://github.com/flightcoded/fly-graphics/tree/master/examples) also.
+```c++
+#include "fly/fly.h"
+
+int main(){
+
+  fly::createWindow("parallelogram", 800, 600);
+  fly::initialize(fly::projectionMethod::ORTHO);
+
+  for(; fly::running(); fly::update()){ //render loop
+
+    //...
+  }
+
+  fly::terminate();
+  return 0;
+}
+```
+
+Check [examples](https://github.com/flightcoded/fly-graphics/tree/master/examples) also.
 
 ## dependencies
 * [GLAD](https://glad.dav1d.de) (configured for OpenGL 3.3 Core)
