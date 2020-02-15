@@ -12,24 +12,22 @@ A C++ graphics library inspired by [Processing](https://processing.org). In deve
 
 ## usage
 
+**creating a window:**
 ```c++
-#include "fly/fly.h"
-
-int main(){
-
-  fly::createWindow("parallelogram", 800, 600);
-  fly::initialize(fly::projectionMethod::ORTHO);
-
-  for(; fly::running(); fly::update()){ //render loop
-
-    //...
-  }
-
-  fly::terminate();
-  return 0;
-}
+fly::createWindow(std::string windowTitle, int width, int height);
 ```
-
+**creating a fullscreen window:**
+```c++
+fly::createWindow(std::string windowTitle);
+```
+**initialization**
+```c++
+fly::initialize(fly::projectionMethod::ORTHO);
+```
+or
+```c++
+fly::initialize(fly::projectionMethod::PERSPECTIVE);
+```
 Check [examples](https://github.com/flightcoded/fly-graphics/tree/master/examples) also.
 
 ## dependencies
