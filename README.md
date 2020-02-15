@@ -14,7 +14,7 @@ A C++ graphics library inspired by [Processing](https://processing.org). In deve
 
 **creating a window:**
 ```c++
-fly::createWindow(std::string windowTitle, int width, int height);
+fly::createWindow(const char *windowTitle, int width, int height);
 ```
 **creating a fullscreen window:**
 ```c++
