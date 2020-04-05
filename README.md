@@ -10,25 +10,7 @@ A C++ graphics library inspired by [Processing](https://processing.org). In deve
 - [ ] light
 - [ ] face culling
 
-## usage
-
-**creating a window:**
-```c++
-fly::createWindow(const char *title, int width, int height);
-```
-**creating a fullscreen window:**
-```c++
-fly::createWindow(const char *title);
-```
-**initialization**
-```c++
-fly::initialize(fly::projectionMethod::ORTHO);
-```
-or
-```c++
-fly::initialize(fly::projectionMethod::PERSPECTIVE);
-```
-Check [examples](https://github.com/flightcoded/fly-graphics/tree/master/examples) also.
+Check [examples](https://github.com/flightcoded/fly-graphics/tree/master/examples).
 
 ## dependencies
 * [GLAD](https://glad.dav1d.de) (configured for OpenGL 3.3 Core)
