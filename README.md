@@ -1,14 +1,11 @@
 A C++ graphics library inspired by [Processing](https://processing.org). In development. 
 
 ## features - development status
-- [x] orthographic and perspective projection
-- [x] window handling
-- [x] complete matrix handling
-- [x] 2D textures
-- [x] instancing
-- [ ] text rendering
-- [ ] light
-- [ ] face culling
+* orthographic and perspective projection
+* window handling
+* complete matrix handling
+* 2D textures
+* instancing
 
 Check [examples](https://github.com/flightcoded/fly-graphics/tree/master/examples).
 
