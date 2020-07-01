@@ -1,6 +1,6 @@
 A simple C++ OpenGL wrapper library inspired by [Processing](https://processing.org).
 
-## features
+## Features
 * orthographic and perspective projection
 * window handling
 * complete matrix handling
@@ -9,7 +9,7 @@ A simple C++ OpenGL wrapper library inspired by [Processing](https://processing.
 
 Check [examples](https://github.com/flightcoded/fly-graphics/tree/master/examples).
 
-## dependencies
+## Dependencies
 * [GLAD](https://glad.dav1d.de) (configured for OpenGL 3.3 Core)
 * [GLFW](https://www.glfw.org)
 * [GLM](https://github.com/g-truc/glm)
