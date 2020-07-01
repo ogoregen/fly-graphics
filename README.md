@@ -1,4 +1,4 @@
-A C++ OpenGL wrapper library inspired by [Processing](https://processing.org). In development. 
+A simple C++ OpenGL wrapper library inspired by [Processing](https://processing.org).
 
 ## features
 * orthographic and perspective projection
