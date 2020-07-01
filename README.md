@@ -15,4 +15,4 @@ Check [examples](https://github.com/flightcoded/fly-graphics/tree/master/example
 * [GLM](https://github.com/g-truc/glm)
 * [stb_image](https://github.com/nothings/stb/blob/master/stb_image.h)
 
-There is a complete Visual Studio project with all dependencies linked and included under [releases](https://github.com/flightcoded/fly-graphics/releases).
+There is a complete Visual Studio project with all dependencies linked and included under [releases](https://github.com/flightcoded/fly-graphics/releases). Feel free to create an issue or contact me should you find an error or just want to.
